@@ -36,12 +36,31 @@ docker stop vnstat-dashboard
 ``
 
 ## How to run it locally directly on your machine or VM
+Clone the repo on to your local machine or VM
+
+``
+git clone https://github.com/jaymoh/vnstat-dashboard.git
+``
+
+Change directory to the `vnstat-dashboard` folder
+
+``
+cd vnstat-dashboard
+``
 
 ```
 cp -rp app/ /var/www/html/vnstat/
 cd /var/www/html/vnstat/
 composer install
 ```
+
+You should have Apache installed and running on your machine or VM. If not, install it.
+
+``
+sudo apt install apache2 php wget unzip -y
+``
+
+The dashboard should be accessible at `http://localhost/vnstat/`
 
 ## Licensing
 Copyright (C) 2019 Alexander Marston (alexander.marston@gmail.com)

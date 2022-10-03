@@ -1,7 +1,7 @@
     <script type="text/javascript">
         google.charts.load('current', { packages: [ 'bar' ] });
         google.charts.load("current", { packages: [ 'corechart' ] });
-        
+
         google.charts.setOnLoadCallback(drawHourlyChart);
         google.charts.setOnLoadCallback(drawDailyChart);
         google.charts.setOnLoadCallback(drawMonthlyChart);
@@ -25,7 +25,7 @@
                 title: 'Hourly Network Traffic',
                 orientation: 'horizontal',
                 legend: { position: 'right' },
-                explorer: { 
+                explorer: {
                     axis: 'horizontal',
                     maxZoomIn: 4.0,
                     maxZoomOut: 3.0
@@ -45,10 +45,10 @@
                     ]
                 }
             };
-            
+
             var formatDate = new google.visualization.DateFormat({ pattern: 'dd/MM/yyyy HH:mm' });
             formatDate.format(data, 0);
-            
+
             var formatNumber = new google.visualization.NumberFormat({ pattern: '##.## {$hourlyLargestPrefix}' });
             formatNumber.format(data, 1);
             formatNumber.format(data, 2);
@@ -72,12 +72,12 @@
                 [new {$value.label}, {$value.rx}, {$value.tx}, {$value.total}],
 {/foreach}
             ]);
-            
+
             let options = {
                 title: 'Daily Network Traffic',
                 orientation: 'horizontal',
                 legend: { position: 'right' },
-                explorer: { 
+                explorer: {
                     axis: 'horizontal',
                     maxZoomIn: 4.0,
                     maxZoomOut: 3.0
@@ -92,10 +92,10 @@
                     direction: -1
                 }
             };
-            
+
             var formatDate = new google.visualization.DateFormat({ pattern: 'dd/MM/yyyy' });
             formatDate.format(data, 0);
-            
+
             var formatNumber = new google.visualization.NumberFormat({ pattern: '##.## {$dailyLargestPrefix}' });
             formatNumber.format(data, 1);
             formatNumber.format(data, 2);
@@ -124,7 +124,7 @@
                 title: 'Monthly Network Traffic',
                 orientation: 'horizontal',
                 legend: { position: 'right' },
-                explorer: { 
+                explorer: {
                     axis: 'horizontal',
                     maxZoomIn: 4.0,
                     maxZoomOut: 3.0
@@ -139,10 +139,10 @@
                     direction: -1
                 }
             };
-            
+
             var formatDate = new google.visualization.DateFormat({ pattern: 'MMMM YYYY' });
             formatDate.format(data, 0);
-            
+
             var formatNumber = new google.visualization.NumberFormat({ pattern: '##.## {$monthlyLargestPrefix}' });
             formatNumber.format(data, 1);
             formatNumber.format(data, 2);

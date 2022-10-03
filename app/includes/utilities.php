@@ -60,7 +60,7 @@ function formatBytesTo($bytes, $delimiter, $decimals = 2)
 
     $i = array_search($delimiter, $sizes);
 
-    return number_format(($bytes / ($k ** $i)), $decimals);
+    return number_format(($bytes / ($k ** $i)), $decimals, '.', '');
 }
 
 function kibibytesToBytes($kibibytes, $vnstatJsonVersion)
