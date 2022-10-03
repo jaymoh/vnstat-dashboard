@@ -1,32 +1,46 @@
 # What is vnstat-dashboard?
-This dashboard is an adaptation of vnstat-php-frontend by bjd using Bootstrap written in PHP. It provides the following:
+This dashboard is an adaptation of **vnstat-php-frontend** by bjd using Bootstrap written in PHP.
+
+It is forked from [vnstat-dashboard](https://github.com/alexandermarston/vnstat-dashboard) by Alexander Marston.
+
+I updated a few lines to make it work with the updated version of vnstat: **2.6**, and **PHP 8.0**.
+
+It provides the following:
 
 * Hourly Statistics Chart (using Google Charts)
 * Daily & Monthly Statistics Overview
-* Top 10 Day Statistics
+* Top 10-Day Statistics
 * Automatically populated interface selection
 
-## Run it with Docker
+## How to Run it with Docker
 
 ### How to build it
-``$ docker build . -t amarston/vnstat-dashboard:latest``
+``
+docker build . -t hackins/vnstat-dashboard:latest
+``
 
 ### How to publish it
-``$ docker push amarston/vnstat-dashboard:latest``
+``
+docker push hackins/vnstat-dashboard:latest
+``
 
-### How to start it
-``$ docker run --name vnstat-dashboard -p 80:80 -v /usr/bin/vnstat:/usr/bin/vnstat -v /var/lib/vnstat:/var/lib/vnstat -d amarston/vnstat-dashboard:latest``
+### How to start it (assumes port 30 is free) Read more about [Docker Port Mapping](https://docs.docker.com/config/containers/container-networking/).
+
+``
+docker run --name vnstat-dashboard -p 30:80 -v /usr/bin/vnstat:/usr/bin/vnstat -v /var/lib/vnstat:/var/lib/vnstat -d hackins/vnstat-dashboard:latest
+``
 
 ### How to stop it
-``$ docker stop vnstat-dashboard``
+``
+docker stop vnstat-dashboard
+``
 
-## Run it with Locally
+## How to run it locally directly on your machine or VM
 
-### How to run it
 ```
-$ cp -rp app/ /var/www/html/vnstat/
-$ cd /var/www/html/vnstat/
-$ composer install
+cp -rp app/ /var/www/html/vnstat/
+cd /var/www/html/vnstat/
+composer install
 ```
 
 ## Licensing

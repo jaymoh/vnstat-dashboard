@@ -1,6 +1,6 @@
-FROM php:7.0-apache
+FROM php:8.0-apache
 
-MAINTAINER Alex Marston <alexander.marston@gmail.com>
+MAINTAINER James Shisiah <jamesshisiah@gmail.com>
 
 # Install Git
 RUN apt-get update && apt-get install -y git unzip

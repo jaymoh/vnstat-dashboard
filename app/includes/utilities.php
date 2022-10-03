@@ -18,13 +18,15 @@
  */
 
 // Get the largest value in an array
-function getLargestValue($array) {
-    return $max = array_reduce($array, function ($a, $b) {
-        return $a > $b['total'] ? $a : $b['total'];
+function getLargestValue($array)
+{
+    return array_reduce($array, static function ($a, $b) {
+        return max($a, $b['total']);
     });
 }
 
-function formatSize($bytes, $vnstatJsonVersion) {
+function formatSize($bytes, $vnstatJsonVersion): string
+{
     // json version 1 = convert from KiB
     // json version 2 = convert from bytes
     if ($vnstatJsonVersion == 1) {
@@ -34,33 +36,40 @@ function formatSize($bytes, $vnstatJsonVersion) {
     return formatBytes($bytes);
 }
 
-function formatBytes($bytes, $decimals = 2) {
-    $base = log(floatval($bytes), 1024);
+function formatBytes($bytes, $decimals = 2): string
+{
+    // if $bytes is zero, return 0
+    if ($bytes == 0) {
+        return '0 B';
+    }
+    $base = log((float)$bytes, 1024);
     $suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-    return round(pow(1024, $base - floor($base)), $decimals) .' '. $suffixes[floor($base)];
+    return round(1024 ** ($base - floor($base)), $decimals) . ' ' . $suffixes[floor($base)];
 }
 
-function formatBytesTo($bytes, $delimiter, $decimals = 2) {
+function formatBytesTo($bytes, $delimiter, $decimals = 2)
+{
     if ($bytes == 0) {
         return '0';
     }
 
     $k = 1024;
-    $dm = $decimals < 0 ? 0 : $decimals;
+    $dm = max($decimals, 0);
     $sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
     $i = array_search($delimiter, $sizes);
 
-    return number_format(($bytes / pow($k, $i)), $decimals);
+    return number_format(($bytes / ($k ** $i)), $decimals);
 }
 
-function kibibytesToBytes($kibibytes, $vnstatJsonVersion) {
+function kibibytesToBytes($kibibytes, $vnstatJsonVersion)
+{
     if ($vnstatJsonVersion == 1) {
-        return $kibibytes *= 1024;
-    } else {
-        return $kibibytes;
+        return (float)$kibibytes * 1024;
     }
+
+    return $kibibytes;
 }
 
 function getLargestPrefix($kb)
@@ -71,18 +80,21 @@ function getLargestPrefix($kb)
 
     while ((($kb < $scale) && ($scale > 1))) {
         $ui++;
-        $scale = $scale / 1024;
+        $scale /= 1024;
     }
 
     return $units[$ui];
 }
 
-function sortingFunction($item1, $item2) {
+function sortingFunction($item1, $item2)
+{
     if ($item1['time'] == $item2['time']) {
         return 0;
-    } else {
-        return $item1['time'] > $item2['time'] ? -1 : 1;
     }
-};
+
+    return $item1['time'] > $item2['time'] ? -1 : 1;
+}
+
+;
 
 ?>

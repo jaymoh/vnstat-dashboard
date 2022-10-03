@@ -19,7 +19,7 @@
 
 // Require includes
 require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/includes/vnstat.php';
+require __DIR__ . '/includes/vnStat.php';
 require __DIR__ . '/includes/utilities.php';
 require __DIR__ . '/includes/config.php';
 
@@ -34,7 +34,7 @@ $smarty->assign('year', date("Y"));
 
 // Set the list of interfaces
 $interface_list = $vnstat->getInterfaces();
-
+//var_dump($interface_list);
 // Set the current interface
 $thisInterface = "";
 

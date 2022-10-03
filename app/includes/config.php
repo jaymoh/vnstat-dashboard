@@ -31,8 +31,9 @@ $vnstat_bin_dir = '/usr/bin/vnstat';
 $use_predefined_interfaces = false;
 
 if ($use_predefined_interfaces == true) {
-    $interface_list = ["eth0", "eth1"];
+    $interface_list = ["enp0s3", "eth1", "enp0s8"];
 
-    $interface_name['eth0'] = "Internal #1";
+    $interface_name['enp0s3'] = "Internal #1";
     $interface_name['eth1'] = "Internal #2";
+    $interface_name['enp0s8'] = "Internal #3";
 }
