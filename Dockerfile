@@ -1,4 +1,4 @@
-FROM php:8.0-apache-bullseye
+FROM php:8.0-apache
 
 MAINTAINER James Shisiah <jamesshisiah@gmail.com>
 
